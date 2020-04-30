@@ -5,8 +5,8 @@ pipeline {
             steps {
                 script {
                     startZap(host: "127.0.0.1", port: 8082, timeout:500)
-                    importZapUrls(path: "C:\owasp-zap\rijksoverheid\rijksoverheid-urls.txt")
-                    importZapScanPolicy(policyPath: "C:\owasp-zap\rijksoverheid\rijksoverheid-policy.policy")
+                    importZapUrls(path: "C:\\owasp-zap\\rijksoverheid\\rijksoverheid-urls.txt")
+                    importZapScanPolicy(policyPath: "C:\\owasp-zap\\rijksoverheid\\rijksoverheid-policy.policy")
                 }
 
             }
