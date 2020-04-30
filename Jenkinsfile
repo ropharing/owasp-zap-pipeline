@@ -11,10 +11,17 @@ pipeline {
 
             }
         }
-        stage('Build & Test') {
+        stage('Attack') {
             steps {
                 script {
-                    sh "mvn verify -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8082"
+                    runZapAttack()
+                }
+            }
+        }
+        post {
+            always {
+                script {
+                    archiveZap(failAllAlerts: 1, failHighAlerts: 0, failMediumAlerts: 0, failLowAlerts: 0, falsePositivesFilePath: "zapFalsePositives.json")
                 }
             }
         }
