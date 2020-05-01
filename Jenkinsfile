@@ -4,11 +4,10 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    startZap(host: "127.0.0.1", port: 8082, timeout:500, zapHome: "C:\\tools\\owasp\\zap")
-                    importZapUrls(path: "C:\\owasp-zap\\rijksoverheid\\rijksoverheid-urls.txt")
-                    importZapScanPolicy(policyPath: "C:\\owasp-zap\\rijksoverheid\\rijksoverheid-policy.policy")
+                    startZap(host: "127.0.0.1", port: 8082, timeout:500, allowedHosts:['localhost'], zapHome: "C:\\tools\\owasp\\zap")
+                    importZapScanPolicy(policyPath: "C:\\security-scan\\scan.policy")
+                    importZapUrls(path: "C:\\security-scan\\rijksoverheid-urls.txt")
                 }
-
             }
         }
         stage('Attack') {
@@ -22,7 +21,7 @@ pipeline {
     post {
         always {
             script {
-                archiveZap(failAllAlerts: 1, failHighAlerts: 0, failMediumAlerts: 0, failLowAlerts: 0, falsePositivesFilePath: "zapFalsePositives.json")
+                archiveZap(failAllAlerts: 0, failHighAlerts: 1, failMediumAlerts: 0, failLowAlerts: 0, falsePositivesFilePath: "zapFalsePositives.json")
             }
         }
     }
