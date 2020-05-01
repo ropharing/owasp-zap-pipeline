@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Anti CSRF Tokens Scanner",
+    "cweid": "352",
+    "wascid": "9",
+    "method": "GET"
+  }
+]
