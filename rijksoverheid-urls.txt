@@ -1,0 +1,2 @@
+http://localhost:8080/site/actueel/nieuws
+http://localhost:8080/site/actueel/nieuws/2020/02/05/actuele-informatie-coronavirus
