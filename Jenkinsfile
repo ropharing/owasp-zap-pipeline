@@ -13,7 +13,7 @@ pipeline {
         stage('Attack') {
             steps {
                 script {
-                    runZapAttack()
+                    runZapAttack(scanPolicyName: "Default Policy")
                 }
             }
         }
