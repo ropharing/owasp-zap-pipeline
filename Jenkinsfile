@@ -4,7 +4,7 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    startZap(host: "127.0.0.1", port: 8082, timeout:500, sessionPath: "c:\\security-scan\\zap.session", allowedHosts:['localhost'], zapHome: "C:\\tools\\owasp\\zap")
+                    startZap(host: "127.0.0.1", port: 8082, timeout:500, allowedHosts:['localhost'], zapHome: "C:\\tools\\owasp\\zap")
                     // importZapScanPolicy(policyPath: "C:\\projects\\rob\\owasp-zap-pipeline\\scan.policy")
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
     post {
         always {
             script {
-                archiveZap(failAllAlerts: 0, failHighAlerts: 5, failMediumAlerts: 0, failLowAlerts: 0, falsePositivesFilePath: "zapFalsePositives.json")
+                archiveZap(failAllAlerts: 0, failHighAlerts: 0, failMediumAlerts: 0, failLowAlerts: 0, falsePositivesFilePath: "zapFalsePositives.json")
             }
         }
     }
