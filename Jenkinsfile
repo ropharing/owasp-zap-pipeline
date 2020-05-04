@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     startZap(host: "127.0.0.1", port: 8082, timeout:500, sessionPath: "c:\\security-scan\\zap.session", allowedHosts:['localhost'], zapHome: "C:\\tools\\owasp\\zap")
-                    importZapScanPolicy(policyPath: "C:\\projects\\rob\\owasp-zap-pipeline\\scan.policy")
+                    // importZapScanPolicy(policyPath: "C:\\projects\\rob\\owasp-zap-pipeline\\scan.policy")
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Attack') {
             steps {
                 script {
-                    runZapAttack(scanPolicyName: "Default Policy")
+                    runZapAttack()
                 }
             }
         }
